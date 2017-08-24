@@ -56,8 +56,7 @@
     "variables": {
         "webSiteName":"[concat(parameters('siteName'), uniqueString(resourceGroup().id))]",
         "sqlserverName": "[concat(toLower(parameters('siteName')), uniqueString(resourceGroup().id))]",
-        "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'standardsa')]",
-        "repoUrl": "https://github.com/Azure-Samples/app-service-mobile-dotnet-todo-list-files"
+        "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'standardsa')]"
     },
     "resources": [
         {
@@ -178,19 +177,6 @@
                     ],
                     "properties": {
                         "Command": "deploy.cmd"
-                    }
-                },
-                {
-                    "apiVersion": "2015-08-01",
-                    "name": "web",
-                    "type": "sourcecontrols",
-                    "dependsOn": [
-                        "[concat('Microsoft.Web/Sites/', variables('webSiteName'))]"
-                    ],
-                    "properties": {
-                        "RepoUrl": "[variables('repoUrl')]",
-                        "branch": "master",
-                        "IsManualIntegration": true
                     }
                 }
             ]
